@@ -3,14 +3,14 @@
 ----------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap");
 :root {
-  --white: #fff;
+  --white: #ffffff;
   --red: #EA1826;
-  --primary: #002935;
-  --secondary: #747474;
+  --primary: #556db4;
+  --secondary: #556db4;
   --accent: #0CB8B6;
   --accent_v2: #30B2D2;
-  --accent_v3: #FF4880;
-  --accent_v4: #0957DE;
+  --accent_v3: #556db4;
+  --accent_v4: #ffffff;
   --dark_blue: #14457B;
   --gray: #f5f5f5;
   --border: #ddd;
@@ -1654,7 +1654,7 @@ hr {
 }
 
 .cs_accent_v1_light {
-  background-color: #ecf9f9;
+  background-color: #ffffff;
 }
 
 .cs_accent_v2_light {
@@ -1662,7 +1662,7 @@ hr {
 }
 
 .cs_accent_v3_light {
-  background-color: #fff4f8;
+  background-color: #ffffff;
 }
 
 .cs_accent_v4_light {
@@ -4009,19 +4009,19 @@ a.ui-button:active,
   padding: 0;
 }
 .cs_footer_main .cs_social_btns.cs_style_1.cs_version_2 a:hover {
-  background-color: var(--accent_v2);
+  background-color: #000;
 }
 .cs_footer_main .cs_social_btns.cs_style_1.cs_version_3 a:hover {
-  background-color: var(--accent_v3);
+  background-color: #000;
 }
 .cs_footer_main .cs_social_btns.cs_style_1 a {
   width: 37px;
   height: 37px;
   border-radius: 50%;
-  background-color: rgba(12, 184, 182, 0.2);
+  background-color: rgba(0, 255, 251, 0.2);
 }
 .cs_footer_main .cs_social_btns.cs_style_1 a:hover {
-  background-color: var(--accent);
+  background-color: rgba(0, 255, 251, 0.2); 
   color: var(--white);
 }
 .cs_footer_main .cs_footer_main_col {
@@ -5132,6 +5132,7 @@ a.ui-button:active,
 }
 .cs_hero.cs_style_1 .cs_hero_title {
   margin-bottom: 26px;
+  font-family: 'Baloo 2', cursive;
 }
 @media (max-width: 991px) {
   .cs_hero.cs_style_1 .cs_hero_title {
@@ -5140,6 +5141,7 @@ a.ui-button:active,
 }
 .cs_hero.cs_style_1 .cs_hero_subtitle {
   margin-bottom: 49px;
+  font-family: 'Baloo 2', cursive;
 }
 @media (max-width: 1199px) {
   .cs_hero.cs_style_1 .cs_hero_subtitle {
@@ -5277,7 +5279,7 @@ a.ui-button:active,
 .cs_hero.cs_style_3 {
   width: 100%;
   height: 100%;
-  background-color: #fff4f8;
+  background-color: #ffffff;
   padding: 210px 0 174px;
   overflow: hidden;
 }
@@ -5326,13 +5328,17 @@ a.ui-button:active,
 .cs_hero.cs_style_3 .cs_hero_title_mini {
   margin-bottom: 30px;
   line-height: 1.45em;
+  font-family: 'Baloo 2', cursive;
 }
 .cs_hero.cs_style_3 .cs_hero_title {
   line-height: 1.34em;
   margin-bottom: 27px;
+   font-family: 'Baloo 2', cursive;
+
 }
 .cs_hero.cs_style_3 .cs_hero_subtitle {
   margin-bottom: 38px;
+  font-family: 'Baloo 2', cursive;
 }
 @media (max-width: 1199px) {
   .cs_hero.cs_style_3 .cs_hero_subtitle br {
@@ -5444,7 +5450,7 @@ a.ui-button:active,
 .cs_hero.cs_style_4 .cs_hero_overlay {
   width: 100%;
   height: 100%;
-  background-color: #002935;
+  background-color: #ff3c00;
   opacity: 0.55;
   position: absolute;
   left: 0;
@@ -5496,7 +5502,7 @@ a.ui-button:active,
   }
 }
 .cs_hero.cs_style_5.cs_fs_version .cs_hero_text.cs_has_bg {
-  background-color: hsla(0, 0%, 100%, 0.5);
+  background-color: hsl(0, 0%, 100%);
   -webkit-backdrop-filter: blur(22px);
           backdrop-filter: blur(22px);
   padding: 40px 35px 60px;
@@ -9494,7 +9500,7 @@ a.ui-button:active,
 }
 .cs_about.cs_style_2 .cs_dog_img {
   bottom: 0;
-  right: -100px;
+  right: -200px;
   z-index: -1;
 }
 @media (max-width: 1199px) {
