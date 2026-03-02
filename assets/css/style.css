@@ -7,8 +7,8 @@
   --red: #EA1826;
   --primary: #556db4;
   --secondary: #556db4;
-  --accent: #0a7b91;
-  --accent-bg: #085e6f;
+  --accent: #62cbe1;
+  --accent-bg: #62cbe1;
   --accent_v2: #30B2D2;
   --accent_v3: #556db4;
   --accent_v4: #ffffff;
@@ -4298,7 +4298,6 @@ a.ui-button:active,
 
 .cs_footer_bottom {
   padding: 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 @media (max-width: 767px) {
   .cs_footer_bottom {
