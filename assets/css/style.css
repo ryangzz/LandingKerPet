@@ -7,7 +7,8 @@
   --red: #EA1826;
   --primary: #556db4;
   --secondary: #556db4;
-  --accent: #62cbe1;
+  --accent: #0a7b91;
+  --accent-bg: #085e6f;
   --accent_v2: #30B2D2;
   --accent_v3: #556db4;
   --accent_v4: #ffffff;
@@ -1638,7 +1639,7 @@ hr {
 }
 
 .cs_accent_bg_v1 {
-  background-color: var(--accent);
+  background-color: var(--accent-bg);
 }
 
 .cs_accent_bg_v2 {

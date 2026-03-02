@@ -89,21 +89,39 @@
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icons/favicon-192x192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/icons/favicon-512x512.png" />
 
-    <!-- Preload Hero Image (LCP) -->
-    <link rel="preload" as="image" href="assets/images/Cabecera.png" />
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- CSS -->
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" type="image/webp" href="assets/images/gallery_8.webp" fetchpriority="high" />
+
+    <!-- Critical CSS (render-blocking - keep minimal) -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/animated-text.css">
-    <link rel="stylesheet" href="assets/css/slick.min.css">
-    <link rel="stylesheet" href="assets/css/light_gallery.min.css">
-    <link rel="stylesheet" href="assets/css/odometer.css">
-    <link rel="stylesheet" href="assets/css/timepicker.min.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/select2.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Non-critical CSS (deferred) -->
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/slick.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/animate.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/animated-text.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/light_gallery.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/odometer.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/timepicker.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/select2.min.css" media="print" onload="this.media='all'">
+    <!-- Fallback for no-JS -->
+    <noscript>
+      <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+      <link rel="stylesheet" href="assets/css/slick.min.css">
+      <link rel="stylesheet" href="assets/css/animate.css">
+      <link rel="stylesheet" href="assets/css/animated-text.css">
+      <link rel="stylesheet" href="assets/css/light_gallery.min.css">
+      <link rel="stylesheet" href="assets/css/odometer.css">
+      <link rel="stylesheet" href="assets/css/timepicker.min.css">
+      <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+      <link rel="stylesheet" href="assets/css/select2.min.css">
+    </noscript>
 
     <!-- Estilos modernos adicionales -->
     <style>
@@ -112,7 +130,7 @@
         --kerpet-primary: #556db4;
         --kerpet-primary-dark: #4a5fa0;
         --kerpet-primary-light: #eef1f8;
-        --kerpet-secondary: #62cbe1;
+        --kerpet-secondary: #0a7b91;
         --kerpet-dark: #1a1a2e;
         --kerpet-gray: #f8f9fa;
         --kerpet-text: #4a4a5a;
@@ -153,7 +171,7 @@
       }
 
       /* Hero subtitle glow */
-      .cs_hero_subtitle { opacity: 0.92; line-height: 1.7; }
+      .cs_hero_subtitle { opacity: 0.92; line-height: 1.7; min-height: 85px; }
 
       /* Modern buttons */
       .cs_btn.cs_style_1 { border-radius: 50px; padding: 14px 36px; font-weight: 600; letter-spacing: 0.3px; transition: var(--kerpet-transition); box-shadow: 0 4px 15px rgba(85,109,180,0.3); }
@@ -216,7 +234,7 @@
       .cs_tab_links.cs_style_1 li.active a { box-shadow: 0 4px 15px rgba(85,109,180,0.25); }
 
       /* Badge/pill style */
-      .kerpet-badge { display: inline-block; background: rgba(98,203,225,0.2); color: #62cbe1; padding: 6px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+      .kerpet-badge { display: inline-block; background: rgba(10,123,145,0.15); color: #0a7b91; padding: 6px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
 
       /* WhatsApp floating btn */
       .kerpet-whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 999; width: 60px; height: 60px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: var(--kerpet-transition); }
@@ -267,6 +285,13 @@
 
       /* Accessibility: sr-only */
       .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+      /* A11y: prevent focusable elements in Slick cloned/hidden slides */
+      .slick-slide[aria-hidden="true"] a,
+      .slick-slide[aria-hidden="true"] button { pointer-events: none; }
+
+      /* Performance: use opacity instead of visibility for WOW.js animations */
+      .wow { visibility: visible !important; }
     </style>
 
     <!-- SEO: JSON-LD Organization -->
@@ -578,7 +603,7 @@
           <div class="cs_main_header_in">
             <div class="cs_main_header_left">
               <a class="cs_site_branding" href="index.html" aria-label="Kerpet - Ir al inicio">
-                <img src="assets/images/logo_kerpetLineal.png" alt="Kerpet - Plataforma digital de servicios veterinarios" width="150" height="45" loading="eager">
+                <img src="assets/images/logo_kerpetLineal.webp" alt="Kerpet - Plataforma digital de servicios veterinarios" width="150" height="45" loading="eager">
               </a>
               <nav class="cs_nav cs_primary_font" aria-label="Navegación principal">
                 <ul class="cs_nav_list cs_fs_18">
@@ -609,17 +634,18 @@
     </header>
     <!-- End Header Section -->
 
+    <main id="main-content">
     <!-- Start Hero Section -->
     <section class="cs_hero cs_style_1 position-relative" id="home" aria-label="Sección principal de Kerpet">
       <div class="cs_hero_top cs_bg_filled cs_primary_bg">
         <!-- Hero Slideshow -->
         <div class="kerpet-hero-slideshow" aria-hidden="true">
-          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_8.jpeg');"></div>
-          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_9.jpeg');"></div>
-          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_10.jpeg');"></div>
-          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_11.jpeg');"></div>
-          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_111.png');"></div>
-          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_1111.png');"></div>
+          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_8.webp');"></div>
+          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_9.webp');"></div>
+          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_10.webp');"></div>
+          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_11.webp');"></div>
+          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_111.webp');"></div>
+          <div class="kerpet-slide" style="background-image: url('assets/images/gallery_1111.webp');"></div>
         </div>
         <div class="container">
           <div class="row cs_gap_y_30 align-items-center">
@@ -638,7 +664,7 @@
                 </div>
               </div>
               <div class="cs_hero_shape1 position-absolute">
-                <img src="assets/images/hero_shape_2.png" alt="" width="200" height="200" loading="lazy" aria-hidden="true">
+                <img src="assets/images/hero_shape_2.webp" alt="" width="200" height="200" loading="lazy" aria-hidden="true">
               </div>
             </div>
           
@@ -695,7 +721,7 @@
         <div class="row cs_gap_y_40 align-items-md-start align-items-center">
           <div class="col-lg-5">
             <div class="cs_about_thumb wow fadeInLeft">
-              <img src="assets/images/isotipo kerpet.png" alt="Kerpet - Isotipo de la plataforma veterinaria" width="600" height="600" loading="lazy" decoding="async">
+              <img src="assets/images/isotipo_kerpet.webp" alt="Kerpet - Isotipo de la plataforma veterinaria" width="600" height="600" loading="lazy" decoding="async">
             </div>
           </div>
           <div class="col-lg-7 cs_pl_65 position-relative">
@@ -731,7 +757,7 @@
                 </a>
               </div>
               <div class="cs_dog_img position-absolute wow zoomIn">
-                <img src="assets/images/dog.png" alt="" width="120" height="120" loading="lazy" aria-hidden="true">
+                <img src="assets/images/dog.webp" alt="" width="120" height="120" loading="lazy" aria-hidden="true">
               </div>
             </div>
           </div>
@@ -858,7 +884,7 @@
           <div class="col-xl-3 col-md-6">
             <div class="cs_funfact cs_style_1" style="justify-content:center;">
               <div class="cs_funfact_icon cs_center">
-                <img src="assets/images/icons/funfact_icon_1.png" alt="Icono de establecimientos registrados en Kerpet" width="64" height="64" loading="lazy">
+                <img src="assets/images/icons/funfact_icon_1.webp" alt="Icono de establecimientos registrados en Kerpet" width="64" height="64" loading="lazy">
               </div>
               <div class="cs_funfact_text">
                 <h2 class="cs_counter_number cs_fs_65 cs_white_color d-flex align-items-center cs_semibold" style="justify-content:center;"><span data-count-to="50" class="odometer"></span>+</h2>
@@ -869,7 +895,7 @@
           <div class="col-xl-3 col-md-6">
             <div class="cs_funfact cs_style_1" style="justify-content:center;">
               <div class="cs_funfact_icon cs_center">
-                <img src="assets/images/icons/funfact_icon_2.png" alt="Icono de mascotas registradas en Kerpet" width="64" height="64" loading="lazy">
+                <img src="assets/images/icons/funfact_icon_2.webp" alt="Icono de mascotas registradas en Kerpet" width="64" height="64" loading="lazy">
               </div>
               <div class="cs_funfact_text">
                 <h2 class="cs_counter_number cs_fs_65 cs_white_color d-flex align-items-center cs_semibold" style="justify-content:center;"><span data-count-to="500" class="odometer"></span>+</h2>
@@ -880,7 +906,7 @@
           <div class="col-xl-3 col-md-6">
             <div class="cs_funfact cs_style_1" style="justify-content:center;">
               <div class="cs_funfact_icon cs_center">
-                <img src="assets/images/icons/funfact_icon_3.png" alt="Icono de especialistas veterinarios en Kerpet" width="64" height="64" loading="lazy">
+                <img src="assets/images/icons/funfact_icon_3.webp" alt="Icono de especialistas veterinarios en Kerpet" width="64" height="64" loading="lazy">
               </div>
               <div class="cs_funfact_text">
                 <h2 class="cs_counter_number cs_fs_65 cs_white_color d-flex align-items-center cs_semibold" style="justify-content:center;"><span data-count-to="30" class="odometer"></span>+</h2>
@@ -891,7 +917,7 @@
           <div class="col-xl-3 col-md-6">
             <div class="cs_funfact cs_style_1" style="justify-content:center;">
               <div class="cs_funfact_icon cs_center">
-                <img src="assets/images/icons/funfact_icon_4.png" alt="Icono de eventos comunitarios en Kerpet" width="64" height="64" loading="lazy">
+                <img src="assets/images/icons/funfact_icon_4.webp" alt="Icono de eventos comunitarios en Kerpet" width="64" height="64" loading="lazy">
               </div>
               <div class="cs_funfact_text">
                 <h2 class="cs_counter_number cs_fs_65 cs_white_color d-flex align-items-center cs_semibold" style="justify-content:center;"><span data-count-to="10" class="odometer"></span>+</h2>
@@ -970,7 +996,7 @@
                   </div>
                   <div class="col-lg-5 text-end">
                     <div class="cs_card_thumb cs_radius_5">
-                      <img src="assets/images/veterinaria.png" alt="Clínica veterinaria registrada en Kerpet" width="470" height="400" loading="lazy" decoding="async">
+                      <img src="assets/images/veterinaria.webp" alt="Clínica veterinaria registrada en Kerpet" width="470" height="400" loading="lazy" decoding="async">
                     </div>
                   </div>
                 </div>
@@ -994,7 +1020,7 @@
                     </div>
                   </div>
                   <div class="col-lg-5 text-end">
-                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/petshop.png" alt="Pet shop registrada en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
+                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/petshop.webp" alt="Pet shop registrada en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
                   </div>
                 </div>
               </div>
@@ -1017,7 +1043,7 @@
                     </div>
                   </div>
                   <div class="col-lg-5 text-end">
-                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/hotelparamascotas.png" alt="Hotel para mascotas registrado en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
+                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/hotelparamascotas.webp" alt="Hotel para mascotas registrado en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
                   </div>
                 </div>
               </div>
@@ -1040,7 +1066,7 @@
                     </div>
                   </div>
                   <div class="col-lg-5 text-end">
-                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/entrenamientocanino.png" alt="Centro de adiestramiento canino registrado en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
+                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/entrenamientocanino.webp" alt="Centro de adiestramiento canino registrado en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
                   </div>
                 </div>
               </div>
@@ -1063,7 +1089,7 @@
                     </div>
                   </div>
                   <div class="col-lg-5 text-end">
-                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/refugioparamascotas.png" alt="Refugio de mascotas registrado en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
+                    <div class="cs_card_thumb cs_radius_5"><img src="assets/images/refugioparamascotas.webp" alt="Refugio de mascotas registrado en Kerpet" width="470" height="400" loading="lazy" decoding="async"></div>
                   </div>
                 </div>
               </div>
@@ -1085,8 +1111,8 @@
             <h2 class="cs_section_title cs_semibold cs_fs_45 mb-0">Elige el plan ideal<br>para tu establecimiento</h2>
           </div>
           <div class="cs_slider_arrows cs_style_1 cs_hide_mobile wow fadeInUp">
-            <div class="cs_left_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" aria-label="Plan anterior"><i class="fa-solid fa-chevron-left"></i></div>
-            <div class="cs_right_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" aria-label="Plan siguiente"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="cs_left_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" role="button" tabindex="0" aria-label="Plan anterior"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="cs_right_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" role="button" tabindex="0" aria-label="Plan siguiente"><i class="fa-solid fa-chevron-right"></i></div>
           </div>
         </div>
         <div class="cs_height_60 cs_height_lg_40"></div>
@@ -1094,9 +1120,9 @@
           <div class="cs_slider_wrapper">
             <!-- Plan Chihuahua -->
             <div class="slick_slide_in">
-              <div class="cs_pricing_table cs_style_1 cs_radius_5 cs_bg_filed position-relative" data-src="assets/images/pricing_bg2.jpeg">
-                <div class="cs_pricing_overlay cs_primary_bg cs_bg_filed cs_radius_5" data-src="assets/images/logo_kerpet.png"></div>
-                <img src="assets/images/chihuahua.png" alt="Plan Chihuahua" class="kerpet-pricing-dog" loading="lazy">
+              <div class="cs_pricing_table cs_style_1 cs_radius_5 cs_bg_filed position-relative" data-src="assets/images/pricing_bg2.webp">
+                <div class="cs_pricing_overlay cs_primary_bg cs_bg_filed cs_radius_5" data-src="assets/images/logo_kerpetLineal.webp"></div>
+                <img src="assets/images/chihuahua.webp" alt="Plan Chihuahua" class="kerpet-pricing-dog" loading="lazy" width="70" height="70">
                 <div class="cs_pricing_info">
                   <h2 class="cs_price cs_accent_color_v1 cs_fs_45 cs_medium">$250 <small style="font-size:18px;">MXN/mes</small></h2>
                   <h3 class="cs_pricing_title cs_fs_28 cs_semibold mb-0">Chihuahua</h3>
@@ -1117,9 +1143,9 @@
             </div>
             <!-- Plan Beagle -->
             <div class="slick_slide_in">
-              <div class="cs_pricing_table cs_style_1 cs_radius_5 cs_bg_filed position-relative" data-src="assets/images/pricing_bg2.jpeg">
-                <div class="cs_pricing_overlay cs_primary_bg cs_bg_filed cs_radius_5" data-src="assets/images/logo_kerpet.png"></div>
-                <img src="assets/images/beagle.png" alt="Plan Beagle" class="kerpet-pricing-dog" loading="lazy">
+              <div class="cs_pricing_table cs_style_1 cs_radius_5 cs_bg_filed position-relative" data-src="assets/images/pricing_bg2.webp">
+                <div class="cs_pricing_overlay cs_primary_bg cs_bg_filed cs_radius_5" data-src="assets/images/logo_kerpetLineal.webp"></div>
+                <img src="assets/images/beagle.webp" alt="Plan Beagle" class="kerpet-pricing-dog" loading="lazy" width="70" height="70">
                 <div class="cs_pricing_info">
                   <h2 class="cs_price cs_accent_color_v1 cs_fs_45 cs_medium">$600 <small style="font-size:18px;">MXN/mes</small></h2>
                   <h3 class="cs_pricing_title cs_fs_28 cs_semibold mb-0">Beagle</h3>
@@ -1140,9 +1166,9 @@
             </div>
             <!-- Plan Husky -->
             <div class="slick_slide_in">
-              <div class="cs_pricing_table cs_style_1 cs_radius_5 cs_bg_filed position-relative" data-src="assets/images/pricing_bg2.jpeg">
-                <div class="cs_pricing_overlay cs_primary_bg cs_bg_filed cs_radius_5" data-src="assets/images/logo_kerpet.png"></div>
-                <img src="assets/images/husky.png" alt="Plan Husky" class="kerpet-pricing-dog" loading="lazy">
+              <div class="cs_pricing_table cs_style_1 cs_radius_5 cs_bg_filed position-relative" data-src="assets/images/pricing_bg2.webp">
+                <div class="cs_pricing_overlay cs_primary_bg cs_bg_filed cs_radius_5" data-src="assets/images/logo_kerpetLineal.webp"></div>
+                <img src="assets/images/husky.webp" alt="Plan Husky" class="kerpet-pricing-dog" loading="lazy" width="70" height="70">
                 <div class="cs_pricing_info">
                   <h2 class="cs_price cs_accent_color_v1 cs_fs_45 cs_medium">$850 <small style="font-size:18px;">MXN/mes</small></h2>
                   <h3 class="cs_pricing_title cs_fs_28 cs_semibold mb-0">Husky</h3>
@@ -1163,8 +1189,8 @@
             </div>
           </div>
           <div class="cs_slider_arrows cs_style_1 cs_hide_desktop">
-            <div class="cs_left_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" aria-label="Plan anterior"><i class="fa-solid fa-chevron-left"></i></div>
-            <div class="cs_right_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" aria-label="Plan siguiente"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="cs_left_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" role="button" tabindex="0" aria-label="Plan anterior"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="cs_right_arrow cs_slider_arrow cs_accent_color_v1 cs_center slick-arrow" role="button" tabindex="0" aria-label="Plan siguiente"><i class="fa-solid fa-chevron-right"></i></div>
           </div>
         </div>
       </div>
@@ -1187,7 +1213,7 @@
                 <i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i> Pregúntanos
               </a>
               <div class="cs_height_25 cs_height_lg_15"></div>
-              <img src="assets/images/dudas.png" alt="¿Tienes dudas? Kerpet te ayuda" loading="lazy" style="max-width:50%; height:auto; display:block;">
+              <img src="assets/images/dudas.webp" alt="¿Tienes dudas? Kerpet te ayuda" loading="lazy" width="500" height="500" style="max-width:50%; height:auto; display:block;">
             </div>
           </div>
           <div class="col-lg-7">
@@ -1272,16 +1298,17 @@
       <div class="cs_height_120 cs_height_lg_80"></div>
     </section>
     <!-- End Contact Section -->
+    </main>
 
     <!-- Start Footer -->
-    <footer class="cs_footer cs_style_1 cs_bg_filed cs_primary_bg" data-src="assets/images/feature_list_bg.png" role="contentinfo">
+    <footer class="cs_footer cs_style_1 cs_bg_filed cs_primary_bg" data-src="assets/images/feature_list_bg.webp" role="contentinfo">
       <div class="container">
         <div class="cs_height_50 cs_height_lg_30"></div>
         <div class="cs_footer_main">
           <div class="row cs_gap_y_20">
             <div class="col-lg-4">
               <div class="cs_footer_widget cs_text_widget">
-                <img src="assets/images/logofooter.png" alt="Kerpet - Logo" width="130" height="40" loading="lazy">
+                <img src="assets/images/logofooter.webp" alt="Kerpet - Logo" width="200" height="40" loading="lazy" style="margin: 0;">
                 <div class="cs_height_10 cs_height_lg_8"></div>
                 <p class="cs_white_color" style="opacity:0.85;">Kerpet conecta a dueños de mascotas con veterinarias y servicios de confianza. Nuestras redes también son comunidad para proteger animales.</p>
                 <h3 class="cs_fs_24 cs_white_color cs_semibold">¡Síguenos!</h3>
@@ -1336,8 +1363,8 @@
           <div class="cs_footer_bottom_text" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:20px 0;border-top:1px solid rgba(255,255,255,0.1);">
             <div class="cs-copyright cs_fs_18 cs_white_color" style="padding:8px 0;">&copy; 2026 Kerpet. Todos los derechos reservados.</div>
             <ul class="cs_footer_links cs_mp0 cs_fs_18 cs_white_color" style="display:flex;gap:20px;list-style:none;padding:8px 0;">
-              <li><a href="#" onclick="openModal('terminos'); return false;" style="color:rgba(255,255,255,0.8);text-decoration:none;">Términos de Uso</a></li>
-              <li><a href="#" onclick="openModal('privacidad'); return false;" style="color:rgba(255,255,255,0.8);text-decoration:none;">Política de Privacidad</a></li>
+              <li><a href="#" data-modal="terminos" style="color:rgba(255,255,255,0.8);text-decoration:none;">Términos de Uso</a></li>
+              <li><a href="#" data-modal="privacidad" style="color:rgba(255,255,255,0.8);text-decoration:none;">Política de Privacidad</a></li>
             </ul>
           </div>
         </div>
@@ -1355,7 +1382,7 @@
       <div class="kerpet-modal">
         <div class="kerpet-modal-header">
           <h3 id="modal-terminos-title">Términos de Uso</h3>
-          <button class="kerpet-modal-close" onclick="closeModal('terminos')" aria-label="Cerrar">&times;</button>
+          <button class="kerpet-modal-close" data-modal-close="terminos" aria-label="Cerrar">&times;</button>
         </div>
         <div class="kerpet-modal-body">
           <h4>1. Uso del Sitio</h4>
@@ -1376,7 +1403,7 @@
           <p>Para consultas: <a href="mailto:contacto@kerpet.com">contacto@kerpet.com</a></p>
         </div>
         <div class="kerpet-modal-footer">
-          <button class="cs_btn cs_style_1 cs_size_md cs_accent_bg_v1 cs_white_color cs_fs_18 cs_semibold" onclick="closeModal('terminos')">Entendido</button>
+          <button class="cs_btn cs_style_1 cs_size_md cs_accent_bg_v1 cs_white_color cs_fs_18 cs_semibold" data-modal-close="terminos">Entendido</button>
         </div>
       </div>
     </div>
@@ -1386,7 +1413,7 @@
       <div class="kerpet-modal">
         <div class="kerpet-modal-header">
           <h3 id="modal-privacidad-title">Política de Privacidad</h3>
-          <button class="kerpet-modal-close" onclick="closeModal('privacidad')" aria-label="Cerrar">&times;</button>
+          <button class="kerpet-modal-close" data-modal-close="privacidad" aria-label="Cerrar">&times;</button>
         </div>
         <div class="kerpet-modal-body">
           <h4>1. Información que Recopilamos</h4>
@@ -1410,52 +1437,27 @@
           <p>Última actualización: 1 de marzo de 2026</p>
         </div>
         <div class="kerpet-modal-footer">
-          <button class="cs_btn cs_style_1 cs_size_md cs_accent_bg_v1 cs_white_color cs_fs_18 cs_semibold" onclick="closeModal('privacidad')">Entendido</button>
+          <button class="cs_btn cs_style_1 cs_size_md cs_accent_bg_v1 cs_white_color cs_fs_18 cs_semibold" data-modal-close="privacidad">Entendido</button>
         </div>
       </div>
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/jquery.slick.min.js"></script>
-    <script src="assets/js/light_gallery.min.js"></script>
-    <script src="assets/js/odometer.js"></script>
-    <script src="assets/js/isotope.pkg.min.js"></script>
-    <script src="assets/js/jquery-timepicker.min.js"></script>
-    <script src="assets/js/jquery-ui.min.js"></script>
-    <script src="assets/js/select2.min.js"></script>
-    <script src="assets/js/animated-text.min.js"></script>
-    <script src="assets/js/ripple.min.js"></script>
-    <script src="assets/js/YTPlayer.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js" defer></script>
+    <script src="assets/js/jquery.slick.min.js" defer></script>
+    <script src="assets/js/wow.min.js" defer></script>
+    <script src="assets/js/light_gallery.min.js" defer></script>
+    <script src="assets/js/odometer.js" defer></script>
+    <script src="assets/js/isotope.pkg.min.js" defer></script>
+    <script src="assets/js/jquery-timepicker.min.js" defer></script>
+    <script src="assets/js/jquery-ui.min.js" defer></script>
+    <script src="assets/js/select2.min.js" defer></script>
+    <script src="assets/js/animated-text.min.js" defer></script>
+    <script src="assets/js/ripple.min.js" defer></script>
+    <script src="assets/js/YTPlayer.min.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
 
     <!-- Modal Scripts -->
-    <script>
-      function openModal(type) {
-        document.getElementById('modal-' + type).classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeModal(type) {
-        document.getElementById('modal-' + type).classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      document.querySelectorAll('.kerpet-modal-overlay').forEach(function(overlay) {
-        overlay.addEventListener('click', function(e) {
-          if (e.target === overlay) {
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-          }
-        });
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          document.querySelectorAll('.kerpet-modal-overlay.active').forEach(function(modal) {
-            modal.classList.remove('active');
-          });
-          document.body.style.overflow = '';
-        }
-      });
-    </script>
+    <script src="assets/js/modals.js" defer></script>
   </body>
 </html>
