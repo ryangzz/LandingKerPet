@@ -1,20 +1,20 @@
 /*--------------------------------------------------------------
 1. All Color Variable
 ----------------------------------------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 :root {
   --white: #ffffff;
   --red: #EA1826;
   --primary: #556db4;
   --secondary: #556db4;
-  --accent: #0CB8B6;
+  --accent: #62cbe1;
   --accent_v2: #30B2D2;
   --accent_v3: #556db4;
   --accent_v4: #ffffff;
   --dark_blue: #14457B;
   --gray: #f5f5f5;
   --border: #ddd;
-  --primary-font: "Barlow", sans-serif;
+  --primary-font: "Poppins", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -5132,7 +5132,7 @@ a.ui-button:active,
 }
 .cs_hero.cs_style_1 .cs_hero_title {
   margin-bottom: 26px;
-  font-family: 'Baloo 2', cursive;
+  font-family: var(--primary-font);
 }
 @media (max-width: 991px) {
   .cs_hero.cs_style_1 .cs_hero_title {
@@ -5141,7 +5141,7 @@ a.ui-button:active,
 }
 .cs_hero.cs_style_1 .cs_hero_subtitle {
   margin-bottom: 49px;
-  font-family: 'Baloo 2', cursive;
+  font-family: var(--primary-font);
 }
 @media (max-width: 1199px) {
   .cs_hero.cs_style_1 .cs_hero_subtitle {
@@ -5328,17 +5328,16 @@ a.ui-button:active,
 .cs_hero.cs_style_3 .cs_hero_title_mini {
   margin-bottom: 30px;
   line-height: 1.45em;
-  font-family: 'Baloo 2', cursive;
+  font-family: var(--primary-font);
 }
 .cs_hero.cs_style_3 .cs_hero_title {
   line-height: 1.34em;
   margin-bottom: 27px;
-   font-family: 'Baloo 2', cursive;
-
+  font-family: var(--primary-font);
 }
 .cs_hero.cs_style_3 .cs_hero_subtitle {
   margin-bottom: 38px;
-  font-family: 'Baloo 2', cursive;
+  font-family: var(--primary-font);
 }
 @media (max-width: 1199px) {
   .cs_hero.cs_style_3 .cs_hero_subtitle br {

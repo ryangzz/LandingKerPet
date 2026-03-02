@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#556db4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Dog silhouette sitting -->
+  <path d="M22 52h4v-8l6-4 4 2v10h4" fill="#62cbe1" fill-opacity="0.15"/>
+  <path d="M22 52h4v-8l6-4 4 2v10h4"/>
+  <!-- Dog body -->
+  <path d="M26 40c-4-2-6-6-4-12 1-3 3-5 6-6 2-1 5-1 7 0 3 2 5 5 5 9 0 4-2 7-5 9"/>
+  <!-- Dog ear -->
+  <path d="M24 22c-2-4-1-8 2-10s6 0 6 3" fill="#62cbe1" fill-opacity="0.3"/>
+  <path d="M24 22c-2-4-1-8 2-10s6 0 6 3"/>
+  <!-- Dog tail -->
+  <path d="M40 32c3-2 6-1 8 2s1 6-1 7"/>
+  <!-- Star/achievement badge -->
+  <circle cx="48" cy="16" r="7" fill="#62cbe1" fill-opacity="0.3" stroke="#556db4"/>
+  <path d="M48 11l1.5 3 3.5.5-2.5 2.5.5 3.5L48 19l-3 1.5.5-3.5L43 14.5l3.5-.5z" fill="#556db4" stroke="none"/>
+  <!-- Ground line -->
+  <line x1="16" y1="52" x2="52" y2="52"/>
+</svg>

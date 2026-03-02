@@ -1,0 +1,16 @@
+# Robots.txt para Kerpet
+# https://www.kerpet.com/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /assets/sass/
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://www.kerpet.com/sitemap.xml

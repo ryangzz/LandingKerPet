@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#556db4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Shopping bag -->
+  <path d="M12 20h40l-4 32H16L12 20z" fill="#62cbe1" fill-opacity="0.15"/>
+  <path d="M12 20h40l-4 32H16L12 20z"/>
+  <path d="M22 20v-6a10 10 0 0 1 20 0v6"/>
+  <!-- Paw print on bag -->
+  <circle cx="28" cy="34" r="2.5" fill="#556db4" stroke="none"/>
+  <circle cx="36" cy="34" r="2.5" fill="#556db4" stroke="none"/>
+  <circle cx="25" cy="29" r="2" fill="#556db4" stroke="none"/>
+  <circle cx="39" cy="29" r="2" fill="#556db4" stroke="none"/>
+  <ellipse cx="32" cy="40" rx="4" ry="3.5" fill="#556db4" stroke="none"/>
+</svg>
