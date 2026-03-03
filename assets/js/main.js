@@ -328,21 +328,26 @@
     $('.cs_date').datepicker({});
   }
   /*--------------------------------------------------------------
-    9. Dynamic contact form
+    9. Dynamic contact form (Web3Forms)
   --------------------------------------------------------------*/
   if ($.exists('#cs_form')) {
     const form = document.getElementById('cs_form');
     const result = document.getElementById('cs_result');
 
     form.addEventListener('submit', function (e) {
-      const formData = new FormData(form);
       e.preventDefault();
+      const formData = new FormData(form);
       var object = {};
       formData.forEach((value, key) => {
         object[key] = value;
       });
       var json = JSON.stringify(object);
-      result.innerHTML = 'Please wait...';
+
+      // Mostrar estado de envío
+      result.style.display = 'block';
+      result.style.background = '#eef1f8';
+      result.style.color = '#556db4';
+      result.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:8px;"></i> Enviando mensaje...';
 
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -353,23 +358,28 @@
         body: json,
       })
         .then(async response => {
-          let json = await response.json();
-          if (response.status == 200) {
-            result.innerHTML = json.message;
+          let data = await response.json();
+          if (response.status === 200) {
+            result.style.background = '#d4edda';
+            result.style.color = '#155724';
+            result.innerHTML = '<i class="fa-solid fa-circle-check" style="margin-right:8px;"></i> ¡Mensaje enviado con éxito! Te contactaremos pronto.';
+            form.reset();
           } else {
-            console.log(response);
-            result.innerHTML = json.message;
+            result.style.background = '#f8d7da';
+            result.style.color = '#721c24';
+            result.innerHTML = '<i class="fa-solid fa-circle-xmark" style="margin-right:8px;"></i> ' + (data.message || 'Error al enviar el mensaje. Intenta de nuevo.');
           }
         })
         .catch(error => {
           console.log(error);
-          result.innerHTML = 'Something went wrong!';
+          result.style.background = '#f8d7da';
+          result.style.color = '#721c24';
+          result.innerHTML = '<i class="fa-solid fa-circle-xmark" style="margin-right:8px;"></i> Error de conexión. Verifica tu internet e intenta de nuevo.';
         })
         .then(function () {
-          form.reset();
           setTimeout(() => {
             result.style.display = 'none';
-          }, 5000);
+          }, 6000);
         });
     });
   }

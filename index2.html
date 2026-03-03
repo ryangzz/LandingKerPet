@@ -818,7 +818,11 @@
         <h2 class="cs_section_title cs_semibold cs_fs_45 mb-0">Contáctanos</h2>
       </div>
       <div class="cs_height_45 cs_height_lg_30"></div>
-      <form class="cs_contact_form cs_version_3 row cs_gap_y_24" id="cs_form">
+      <form action="https://api.web3forms.com/submit" method="POST" class="cs_contact_form cs_version_3 row cs_gap_y_24" id="cs_form">
+        <input type="hidden" name="access_key" value="0d0fdc8f-a90a-4916-9768-4e4e52dbb81a">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde Kerpet.com">
+        <input type="hidden" name="from_name" value="Kerpet Web">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
         <div class="col-md-6 position-relative">
           <input type="text" name="fname" class="cs_form_field cs_radius_5" required>
           <label>Nombre</label>
@@ -845,6 +849,9 @@
         </div>
         <div class="col-md-12 text-md-center">
           <button type="submit" class="cs_btn cs_style_1 cs_size_md cs_accent_bg_v3 cs_white_color cs_fs_18 cs_semibold">Enviar Mensaje</button>
+        </div>
+        <div class="col-md-12 text-md-center">
+          <div id="cs_result" style="display:none; margin-top:15px; padding:12px 20px; border-radius:10px; font-size:16px; font-weight:600;"></div>
         </div>
       </form>
     </div>
